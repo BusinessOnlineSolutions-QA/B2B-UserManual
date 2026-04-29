@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Business Online Solutions - B2B Software Manual</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(
+        120deg,
+        #1f2933 0%,
+        #1f3b40 30%,
+        #1f6f6a 60%,
+        #2f9e7a 100%
+    );
+    cursor: default;
+}
+
+
+
+/* ===== FLOATING BACKGROUND CARDS ===== */
+.background {
+    position: absolute;
+    inset: 0;
+}
+
+.bg-card {
+    position: absolute;
+    width: 250px; 
+    height: 170px; 
+    border-radius: 18px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.11);
+    backdrop-filter: blur(28px) saturate(155%);
+    -webkit-backdrop-filter: blur(28px) saturate(155%);
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+/* Card content */
+.card-content {
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.card-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+    opacity: 0.95;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+}
+
+.card-text {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+/* ===== CARDS POSITIONING WITH PROPER SPACING ===== */
+/* Top Row Cards */
+.c1 { 
+    top: 12%; 
+    left: 5.5%; 
+    transform: rotate(-2deg);
+}
+
+.c2 { 
+    top: 12%; 
+    right: 5.5%; 
+    transform: rotate(2deg);
+}
+
+/* Middle Row Cards */
+.c3 { 
+    top: 30%; 
+    left: 5%; 
+    bottom: 15%; 
+    transform: translateY(-50%) rotate(-3deg);
+}
+
+.c4 { 
+    top: 30%; 
+    right: 5%; 
+    transform: translateY(-50%) rotate(3deg);
+}
+
+/* Bottom Row Cards */
+.c5 { 
+    bottom: 5%; 
+    left: 8%; 
+    transform: rotate(-1deg);
+}
+
+.c6 { 
+  
+    bottom: 5%; 
+    right: 8%; 
+    transform: rotate(1deg);
+}
+
+/* ===== CENTER GLASS CARD ===== */
+.center-card {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 620px;
+    height: fit-content;
+    padding: 52px 48px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(50px) saturate(160%);
+    -webkit-backdrop-filter: blur(50px) saturate(160%);
+    border-radius: 26px;
+    box-shadow:
+        0 40px 110px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+    animation: fadeUp 1.4s ease forwards;
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+/* Glass effect shine */
+.center-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%);
+    border-radius: 26px 26px 0 0;
+}
+
+
+/* Entrance animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ===== LOGO & TITLE ===== */
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 36px;
+}
+
+.company-name {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.company-tagline {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.3px;
+}
+
+/* ===== MAIN TITLE ===== */
+.title {
+    color: #ffffff;
+    font-size: 44px;
+    font-weight: 350;
+    line-height: 1.25;
+    margin-bottom: 40px;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.title span {
+    font-weight: 500;
+    background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.9) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===== BUTTON ===== */
+.next-button {
+    padding: 16px 52px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.15) 100%
+    );
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+        0 10px 35px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.next-button:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0.2) 100%
+    );
+    transform: translateY(-3px);
+    box-shadow: 
+        0 15px 45px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+
+.next-button:active {
+    transform: translateY(-1px);
+}
+
+.button-arrow {
+    font-size: 22px;
+    transition: transform 0.3s ease;
+    font-weight: 300;
+}
+
+.next-button:hover .button-arrow {
+    transform: translateX(5px);
+}
+
+/* ===== BACKGROUND BLUR EFFECTS ===== */
+.bg-blurs {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.blur-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(255, 255, 255, 0.03) 100%);
+    filter: blur(80px);
+    opacity: 0.6;
+}
+
+.blur-1 {
+    width: 700px;
+    height: 700px;
+    top: -200px;
+    right: -150px;
+}
+
+.blur-2 {
+    width: 600px;
+    height: 600px;
+    bottom: -200px;
+    left: -150px;
+}
+
+.blur-3 {
+    width: 500px;
+    height: 500px;
+    top: 30%;
+    left: 60%;
+}
+.bos-logo {
+    width: 250px;
+    height: auto;
+    margin-bottom: 14px;
+    filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.35));
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    /* Adjust card positions for medium screens */
+    .c1 { top: 10%; left: 5%; }
+    .c2 { top: 10%; right: 5%; }
+    .c3 { top: 40%; left: 3%; }
+    .c4 { top: 40%; right: 3%; }
+    .c5 { bottom: 10%; left: 8%; }
+    .c6 { bottom: 10%; right: 8%; }
+    .c7 { top: 20%; left: 20%; }
+    .c8 { top: 65%; left: 25%; }
+}
+
+@media (max-width: 768px) {
+    .center-card {
+        width: 90%;
+        padding: 40px 32px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+    
+    .company-name {
+        font-size: 24px;
+    }
+    
+    .company-tagline {
+        font-size: 16px;
+    }
+    
+    .bg-card {
+        width: 200px;
+        height: 150px;
+    }
+    
+    /* Stack cards for mobile - no overlaps */
+    .c1 { top: 5%; left: 5%; }
+    .c2 { top: 5%; right: 5%; }
+    .c3 { top: 30%; left: 5%; }
+    .c4 { top: 30%; right: 5%; }
+    .c5 { bottom: 30%; left: 5%; }
+    .c6 { bottom: 30%; right: 5%; }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 28px;
+    }
+    
+    .next-button {
+        padding: 14px 40px;
+        font-size: 16px;
+    }
+    
+    .company-name {
+        font-size: 20px;
+    }
+    
+    /* Fewer cards on very small screens */
+    .c7, .c8 { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Blur Effects -->
+<div class="bg-blurs">
+    <div class="blur-circle blur-1"></div>
+    <div class="blur-circle blur-2"></div>
+    <div class="blur-circle blur-3"></div>
+</div>
+
+<!-- Floating B2B Software Cards -->
+<div class="background" id="background">
+    <div class="bg-card c1">
+        <div class="card-content">
+            <div class="card-icon">📊</div>
+            <div class="card-title">Sales Dashboard</div>
+            <div class="card-text">Real-time analytics and reporting</div>
+        </div>
+    </div>
+    <div class="bg-card c2">
+        <div class="card-content">
+            <div class="card-icon">💼</div>
+            <div class="card-title">Team Collaboration</div>
+            <div class="card-text">Team communication tools</div>
+        </div>
+    </div>
+    <div class="bg-card c3">
+        <div class="card-content">
+            <div class="card-icon">📈</div>
+            <div class="card-title">Business Analytics</div>
+            <div class="card-text">Data analysis & visualization</div>
+        </div>
+    </div>
+    <div class="bg-card c4">
+        <div class="card-content">
+            <div class="card-icon">⚙️</div>
+            <div class="card-title">Workflow Automation</div>
+            <div class="card-text">Automate business processes</div>
+        </div>
+    </div>
+    <div class="bg-card c5">
+        <div class="card-content">
+            <div class="card-icon">🔒</div>
+            <div class="card-title">Enterprise Security</div>
+            <div class="card-text">Advanced security protocols</div>
+        </div>
+    </div>
+    <div class="bg-card c6">
+        <div class="card-content">
+            <div class="card-icon">🌐</div>
+            <div class="card-title">API Management</div>
+            <div class="card-text">Connect third-party services</div>
+        </div>
+    </div>
+    
+</div>
+
+<!-- Main Center Card -->
+<div class="center-card">
+    <div class="logo">
+        <img src="assets/images/ui/Logo.png" alt="Business Online Solutions Logo" class="bos-logo">
+        <!-- <div class="company-name">Business Online Solutions</div> -->
+        <div class="company-tagline">Welcome to our B2B Software User Manual</div>
+    </div>
+
+    <div class="title">
+        Let's explore what makes <br>
+        <span>our software special</span>
+    </div>
+
+    <button href="Manual.html" class="next-button">
+        Get Started <span class="button-arrow">→</span>
+    </button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.bg-card');
+    
+    // Store original positions and states
+    const cardStates = [];
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const style = window.getComputedStyle(card);
+        const transform = style.transform;
+        
+        // Parse the existing transform for initial rotation
+        let initialRotation = 0;
+        if (transform && transform !== 'none') {
+            const match = transform.match(/rotate\(([-\d.]+)deg\)/);
+            if (match) initialRotation = parseFloat(match[1]);
+        }
+        
+        cardStates.push({
+            element: card,
+            x: rect.left,
+            y: rect.top,
+            width: rect.width,
+            height: rect.height,
+            baseX: rect.left,
+            baseY: rect.top,
+            initialRotation: initialRotation,
+            currentX: 0,
+            currentY: 0,
+            velocityX: 0,
+            velocityY: 0,
+            // Store original positioning class for reference
+            className: card.className.split(' ')[1]
+        });
+    });
+    
+    // Mouse tracking with smooth interpolation
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let targetX = mouseX;
+    let targetY = mouseY;
+    
+    // Smooth mouse tracking - cursor is now visible
+    document.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+    });
+    
+    // Animation variables
+    let lastTime = 0;
+    const animationSpeed = 0.04;
+    const friction = 0.88; // Reduced for smoother return
+    const maxDistance = 180; // Reduced interaction radius
+    const pushStrength = 0.6; // Reduced push strength
+    
+    // Function to ensure cards don't overlap
+    function preventOverlaps() {
+        for (let i = 0; i < cardStates.length; i++) {
+            for (let j = i + 1; j < cardStates.length; j++) {
+                const cardA = cardStates[i];
+                const cardB = cardStates[j];
+                
+                // Calculate distance between card centers
+                const centerAX = cardA.baseX + cardA.currentX + cardA.width / 2;
+                const centerAY = cardA.baseY + cardA.currentY + cardA.height / 2;
+                const centerBX = cardB.baseX + cardB.currentX + cardB.width / 2;
+                const centerBY = cardB.baseY + cardB.currentY + cardB.height / 2;
+                
+                const dx = centerAX - centerBX;
+                const dy = centerAY - centerBY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Minimum distance to prevent overlap
+                const minDistance = (cardA.width + cardB.width) / 3;
+                
+                if (distance < minDistance && distance > 0) {
+                    // Push cards apart
+                    const force = (minDistance - distance) / minDistance;
+                    const angle = Math.atan2(dy, dx);
+                    
+                    // Apply separation force
+                    const separationX = Math.cos(angle) * force * 5;
+                    const separationY = Math.sin(angle) * force * 5;
+                    
+                    cardA.velocityX += separationX * 0.1;
+                    cardA.velocityY += separationY * 0.1;
+                    cardB.velocityX -= separationX * 0.1;
+                    cardB.velocityY -= separationY * 0.1;
+                }
+            }
+        }
+    }
+    
+    // Animation loop with physics
+    function animate(currentTime) {
+        if (!lastTime) lastTime = currentTime;
+        const deltaTime = Math.min((currentTime - lastTime) / 16, 2);
+        lastTime = currentTime;
+        
+        // Smooth mouse interpolation
+        mouseX += (targetX - mouseX) * 0.08;
+        mouseY += (targetY - mouseY) * 0.08;
+        
+        // Prevent card overlaps first
+        preventOverlaps();
+        
+        // Update each card with physics
+        cardStates.forEach(state => {
+            const rect = state.element.getBoundingClientRect();
+            const cardCenterX = rect.left + state.width / 2;
+            const cardCenterY = rect.top + state.height / 2;
+            
+            // Calculate distance to mouse
+            const dx = mouseX - cardCenterX;
+            const dy = mouseY - cardCenterY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            // Only apply force if mouse is within range
+            if (distance < maxDistance) {
+                // Calculate force direction (away from mouse)
+                const force = ((maxDistance - distance) / maxDistance) * pushStrength;
+                const angle = Math.atan2(dy, dx);
+                
+                // Apply force to velocity
+                state.velocityX -= Math.cos(angle) * force * deltaTime * 2;
+                state.velocityY -= Math.sin(angle) * force * deltaTime * 2;
+            }
+            
+            // Apply friction
+            state.velocityX *= friction;
+            state.velocityY *= friction;
+            
+            // Update position
+            state.currentX += state.velocityX;
+            state.currentY += state.velocityY;
+            
+            // Apply boundaries (keep cards within reasonable range)
+            const maxMovement = 45;
+            state.currentX = Math.max(-maxMovement, Math.min(maxMovement, state.currentX));
+            state.currentY = Math.max(-maxMovement, Math.min(maxMovement, state.currentY));
+            
+            // Apply transform with smooth movement and original rotation
+            state.element.style.transform = 
+                `translate(${state.currentX}px, ${state.currentY}px) rotate(${state.initialRotation}deg)`;
+            
+            // Add subtle 3D perspective effect
+            const perspectiveX = (mouseY - cardCenterY) / 100;
+            const perspectiveY = (mouseX - cardCenterX) / 100;
+            state.element.style.transform += 
+                ` perspective(1200px) rotateX(${perspectiveX}deg) rotateY(${perspectiveY}deg)`;
+            
+            // Dynamic blur based on mouse distance
+            const blurAmount = Math.max(25, 30 - (distance / 400) * 8);
+            state.element.style.backdropFilter = `blur(${blurAmount}px) saturate(180%)`;
+            state.element.style.webkitBackdropFilter = `blur(${blurAmount}px) saturate(180%)`;
+            
+            // Add glow effect when mouse is close
+            if (distance < 120) {
+                state.element.style.boxShadow = 
+                    `0 25px 60px rgba(0, 0, 0, 0.4),
+                     0 0 0 1px rgba(255, 255, 255, 0.25),
+                     inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                     0 0 20px rgba(0, 150, 255, 0.25)`;
+            } else {
+                state.element.style.boxShadow = 
+                    `0 20px 50px rgba(0, 0, 0, 0.35),
+                     0 0 0 1px rgba(255, 255, 255, 0.2),
+                     inset 0 1px 0 rgba(255, 255, 255, 0.15)`;
+            }
+        });
+        
+        requestAnimationFrame(animate);
+    }
+    
+    // Start animation
+    requestAnimationFrame(animate);
+    
+    // Button interaction with ripple effect
+    const nextButton = document.querySelector('.next-button');
+    nextButton.addEventListener('click', function(e) {
+        // Create ripple effect
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            transform: scale(0);
+            animation: ripple 0.7s ease-out;
+            pointer-events: none;
+            z-index: 1;
+        `;
+        
+        this.appendChild(ripple);
+        
+        // Add ripple animation if not already present
+        if (!document.querySelector('#ripple-animation')) {
+            const style = document.createElement('style');
+            style.id = 'ripple-animation';
+            style.textContent = `
+                @keyframes ripple {
+                    0% {
+                        transform: scale(0);
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Remove ripple after animation
+        setTimeout(() => {
+            if (ripple.parentNode) ripple.parentNode.removeChild(ripple);
+        }, 700);
+        
+        // Simulate navigation to software manual
+        window.location.href = "manual.html";
+
+        // Add visual feedback
+        this.style.transform = 'translateY(-1px)';
+        setTimeout(() => {
+            this.style.transform = '';
+        }, 150);
+    });
+    
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Reset card positions on resize
+            cardStates.forEach(state => {
+                // Get new base position based on class
+                const tempDiv = document.createElement('div');
+                tempDiv.className = `bg-card ${state.className}`;
+                tempDiv.style.position = 'absolute';
+                tempDiv.style.visibility = 'hidden';
+                document.body.appendChild(tempDiv);
+                
+                const rect = tempDiv.getBoundingClientRect();
+                state.baseX = rect.left;
+                state.baseY = rect.top;
+                document.body.removeChild(tempDiv);
+                
+                // Reset movement
+                state.currentX = 0;
+                state.currentY = 0;
+                state.velocityX = 0;
+                state.velocityY = 0;
+            });
+        }, 250);
+    });
+    
+    // Add subtle ambient animation for cards when idle
+    let lastMouseMove = Date.now();
+    document.addEventListener('mousemove', () => {
+        lastMouseMove = Date.now();
+    });
+    
+    function ambientAnimation() {
+        const idleTime = Date.now() - lastMouseMove;
+        
+        // Only apply ambient animation if mouse has been idle for 3 seconds
+        if (idleTime > 3000) {
+            cardStates.forEach(state => {
+                const time = Date.now() / 2000;
+                const driftX = Math.sin(time * 0.3 + state.baseX) * 0.8;
+                const driftY = Math.cos(time * 0.4 + state.baseY) * 0.8;
+                
+                state.velocityX += driftX * 0.05;
+                state.velocityY += driftY * 0.05;
+            });
+        }
+        setTimeout(ambientAnimation, 2000);
+    }
+    ambientAnimation();
+});
+</script>
+
+</body>
+</html>
